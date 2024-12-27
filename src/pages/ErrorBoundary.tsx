@@ -23,21 +23,25 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     console.error("Hata Detayları:", error, errorInfo);
   }
 
-  
+  handleHomeRedirect = () => {
+    window.location.href = `/`; 
+  };
 
   render() {
-
     if (this.state.hasError) {
-      const goToHome=()=>{
-          return window.location.href=`/city`
-      }
       return (
-        <div className='fcol items-center justify-center w-screen h-screen font-mono'>
-          <FaExclamationTriangle className='text-9xl text-red-500' />
-          <h1 className='text-2xl mt-4 '>Sayfaya Geçiçi Olarak Ulaşılamıyor...</h1>
-          <div onClick={goToHome} className='cursor-pointer'>
-            <a className='text-lg text-blue-900 border-b-2 animate-pulse '>Anasayfaya Git</a>
-          </div>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-gray-800 via-black to-gray-900 text-white text-center px-6">
+          <FaExclamationTriangle className="text-9xl text-red-500 animate-bounce" />
+          <h1 className="text-4xl font-bold mt-6">Bir Hata Oluştu</h1>
+          <p className="text-lg text-gray-400 mt-4">
+            Sayfaya geçici olarak ulaşılamıyor. Lütfen birkaç dakika sonra tekrar deneyin.
+          </p>
+          <button
+            onClick={this.handleHomeRedirect}
+            className="mt-8 px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white rounded-lg font-bold transition"
+          >
+            Anasayfaya Dön
+          </button>
         </div>
       );
     }

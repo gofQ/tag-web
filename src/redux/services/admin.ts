@@ -7,7 +7,7 @@ export const admin=createApi({
     baseQuery:fetchBaseQuery({baseUrl:API_URL}),
     endpoints:(builder)=>({
         register:builder.mutation({
-            query:(body)=>({
+            query:(body)=>({ 
                 url:"/api/admins/register",
                 method:"POST",
                 body,
